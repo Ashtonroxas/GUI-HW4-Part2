@@ -1,0 +1,80 @@
+<!-- 
+Name: Ashton Roxas
+Date: 11/26/2025
+File: index.html
+
+GUI Assignment:
+    This assignment creates a dynamic multiplication table using user-defined input ranges.
+    PART 1: Implementation uses the jQuery Validation plugin for client-side validation.
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HW4 - Sliders & Tabs</title>
+    
+    <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.2/themes/smoothness/jquery-ui.css">
+    <link rel="stylesheet" href="style/style.css" /> 
+</head>
+<body>
+
+    <main class="container">
+        <h1>Dynamic Table with Sliders & Tabs</h1>
+
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1">Input Parameters</a></li>
+            </ul>
+
+            <div id="tabs-1">
+                <section class="input-card">
+                    <h2>Table Settings</h2>
+                    <form id="rangeForm">
+                        
+                        <div class="input-row">
+                            <label for="colStart">Column Start</label>
+                            <input type="number" id="colStart" name="colStart" required />
+                            <div id="slider-colStart" class="slider-control"></div>
+                            <div id="colStartError" class="error-container"></div>
+                        </div>
+
+                        <div class="input-row">
+                            <label for="colEnd">Column End</label>
+                            <input type="number" id="colEnd" name="colEnd" required />
+                            <div id="slider-colEnd" class="slider-control"></div>
+                            <div id="colEndError" class="error-container"></div>
+                        </div>
+
+                        <div class="input-row">
+                            <label for="rowStart">Row Start</label>
+                            <input type="number" id="rowStart" name="rowStart" required />
+                            <div id="slider-rowStart" class="slider-control"></div>
+                            <div id="rowStartError" class="error-container"></div>
+                        </div>
+
+                        <div class="input-row">
+                            <label for="rowEnd">Row End</label>
+                            <input type="number" id="rowEnd" name="rowEnd" required />
+                            <div id="slider-rowEnd" class="slider-control"></div>
+                            <div id="rowEndError" class="error-container"></div>
+                        </div>
+
+                        <div class="button-group">
+                            <button type="submit" class="generate-btn">Generate Table</button>
+                            <button type="button" id="delete-all-btn" class="delete-btn">Delete All Tabs</button>
+                        </div>
+                    </form>
+                </section>
+            </div>
+            </div>
+    </main>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery-validation@1.20.0/dist/jquery.validate.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
