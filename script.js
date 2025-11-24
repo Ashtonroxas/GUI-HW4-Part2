@@ -60,7 +60,7 @@ $(document).ready(function() {
     }, function(params, element) {
         const label = $(element).closest('.input-row').find('label').text();
         const partnerLabel = $(params).closest('.input-row').find('label').text();
-        return `🚫 ${label} must be >= ${partnerLabel}.`;
+        return ` ${label} must be >= ${partnerLabel}.`;
     });
 
     $("#rangeForm").validate({
@@ -114,7 +114,6 @@ $(document).ready(function() {
         // Template for the Tab Header (includes close button) 
         const li = `<li><a href="#${tabId}">${tabTitle}</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span></li>`;
         
-        // Append Header and Content Div
         $("#tabs ul").append(li);
         $("#tabs").append(`<div id="${tabId}" class="table-scroll-area"></div>`);
         
@@ -130,15 +129,12 @@ $(document).ready(function() {
         $("#tabs").tabs("option", "active", newIndex);
     }
 
-    // Function to close individual tabs 
-    // Uses event delegation because these elements are dynamic
     $("#tabs").on("click", "span.ui-icon-close", function() {
         var panelId = $(this).closest("li").remove().attr("aria-controls");
         $("#" + panelId).remove();
         tabs.tabs("refresh");
     });
 
-    // Function to Delete All Tabs (except the Main Input tab) [cite: 85, 99]
     $("#delete-all-btn").click(function() {
         // Remove all LIs except the first one
         $("#tabs ul li:not(:first-child)").remove();
@@ -150,7 +146,6 @@ $(document).ready(function() {
 
 // Helper function to generate Table HTML string
 function generateTableHTML(cStart, cEnd, rStart, rEnd) {
-    // Safety Check for size
     if (Math.abs(cEnd - cStart) > 200 || Math.abs(rEnd - rStart) > 200) {
          return '<p class="error">Table too large to render.</p>';
     }
