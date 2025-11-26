@@ -3,6 +3,7 @@
  * Date: 11/26/2025
  * File: script.js
  * GUI Assignment HW4 Part 2:
+ * 
  * - Implements Validation Plugin.
  * - Implements jQuery UI Sliders (Two-way binding).
  * - Implements jQuery UI Tabs (Dynamic creation and deletion).
@@ -18,23 +19,19 @@ $(document).ready(function() {
     var tabs = $("#tabs").tabs();
 
     // 2. Initialize Sliders with Two-Way Binding [cite: 74, 78]
-    // Helper function to setup slider <-> input binding
     function makeSlider(sliderId, inputId) {
         $(sliderId).slider({
             min: MIN_ALLOWED_VAL,
             max: MAX_ALLOWED_VAL,
             range: "min",
-            value: 0, // Default value
+            value: 0, 
             slide: function(event, ui) {
-                // SLIDER -> INPUT
-                // When slider moves, update input value immediately [cite: 76]
                 $(inputId).val(ui.value);
                 // Trigger validation to remove error messages if value becomes valid
                 $(inputId).valid(); 
             }
         });
 
-        // INPUT -> SLIDER
         // When input changes, update slider position 
         $(inputId).on("change keyup", function() {
             let val = parseInt($(this).val());
@@ -54,7 +51,6 @@ $(document).ready(function() {
     // 3. Validation Logic (Preserved from Part 1) [cite: 18]
     $.validator.addMethod("greaterThanEqual", function(value, element, params) {
         const minElementValue = $(params).val();
-        // Allow check only if both are numbers
         if (isNaN(value) || isNaN(minElementValue)) return true; 
         return Number(value) >= Number(minElementValue);
     }, function(params, element) {
@@ -65,7 +61,6 @@ $(document).ready(function() {
 
     $("#rangeForm").validate({
         submitHandler: function(form) {
-            // IF Valid: Create a new Tab with the table 
             addTab();
             return false;
         },
@@ -76,7 +71,6 @@ $(document).ready(function() {
             rowEnd: { required: true, number: true, min: MIN_ALLOWED_VAL, max: MAX_ALLOWED_VAL, greaterThanEqual: "#rowStart" }
         },
         messages: {
-            // Keep your custom messages from Part 1 here (abbreviated for brevity)
             colStart: { min: `Min value is ${MIN_ALLOWED_VAL}`, max: `Max value is ${MAX_ALLOWED_VAL}` },
             colEnd: { min: `Min value is ${MIN_ALLOWED_VAL}`, max: `Max value is ${MAX_ALLOWED_VAL}` },
             rowStart: { min: `Min value is ${MIN_ALLOWED_VAL}`, max: `Max value is ${MAX_ALLOWED_VAL}` },
@@ -96,22 +90,18 @@ $(document).ready(function() {
     });
 
     // 4. Tab Management Logic
-    
-    // Function to add a new tab 
     function addTab() {
         const cStart = Number($('#colStart').val());
         const cEnd = Number($('#colEnd').val());
         const rStart = Number($('#rowStart').val());
         const rEnd = Number($('#rowEnd').val());
 
-        // Create Unique ID for the new tab
         const tabCount = $("#tabs ul li").length; 
-        const tabId = "tabs-" + (tabCount + 1) + "-" + Date.now(); // Unique ID
+        const tabId = "tabs-" + (tabCount + 1) + "-" + Date.now(); 
         
         // Label the tab with parameters 
         const tabTitle = `[${cStart}, ${cEnd}] x [${rStart}, ${rEnd}]`;
         
-        // Template for the Tab Header (includes close button) 
         const li = `<li><a href="#${tabId}">${tabTitle}</a> <span class="ui-icon ui-icon-close" role="presentation">Remove Tab</span></li>`;
         
         $("#tabs ul").append(li);
@@ -136,7 +126,6 @@ $(document).ready(function() {
     });
 
     $("#delete-all-btn").click(function() {
-        // Remove all LIs except the first one
         $("#tabs ul li:not(:first-child)").remove();
         // Remove all DIV panels except tabs-1
         $("#tabs div[id^='tabs-']:not(#tabs-1)").remove();
@@ -151,14 +140,12 @@ function generateTableHTML(cStart, cEnd, rStart, rEnd) {
     }
 
     let html = '<table>';
-    // Header Row
     html += '<tr><th class="empty-cell"></th>';
     for (let c = cStart; c <= cEnd; c++) {
         html += `<th>${c}</th>`;
     }
     html += '</tr>';
 
-    // Body Rows
     for (let r = rStart; r <= rEnd; r++) {
         html += '<tr>';
         html += `<th>${r}</th>`; // Row Header

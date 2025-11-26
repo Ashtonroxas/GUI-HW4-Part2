@@ -1,8 +1,7 @@
 /*
 Name: Ashton Roxas
 Date: 11/26/2025
-File: style.css (Updated for HW4 Part 2: Sliders & Tabs)
-*/
+File: style.css 
 
 /* Base Styles & Typography (Preserved from Part 1) */
 body {
@@ -16,7 +15,7 @@ body {
 }
 
 .container {
-    width: 95%; /* Slightly wider for tabs */
+    width: 95%; 
     max-width: 1000px;
     margin: 40px auto;
     text-align: center;
@@ -29,7 +28,6 @@ h1 {
 }
 
 /* jQuery UI TABS Styling (New for Part 2) */
-/* Remove default jQuery UI borders/backgrounds */
 #tabs {
     background: transparent;
     border: none;
@@ -37,7 +35,7 @@ h1 {
 
 /* The Tab Navigation Bar (The row of links) */
 #tabs .ui-tabs-nav {
-    background: rgba(0, 0, 0, 0.2); /* Dark semi-transparent bar */
+    background: rgba(0, 0, 0, 0.2);
     border: none;
     border-radius: 8px 8px 0 0;
     padding: 0.2em 0.2em 0;
@@ -45,7 +43,7 @@ h1 {
 
 /* Individual Tab Items */
 #tabs .ui-tabs-nav li {
-    background: #4a148c;      /* Dark purple inactive tabs */
+    background: #4a148c;      
     border: 1px solid #6a1b9a;
     margin-right: 5px;
     border-radius: 5px 5px 0 0;
@@ -53,22 +51,22 @@ h1 {
 
 /* The Active Tab */
 #tabs .ui-tabs-nav li.ui-tabs-active {
-    background: #7b1fa2;      /* Lighter purple for active */
+    background: #7b1fa2;      
     border: 1px solid #ce93d8;
     border-bottom: none;
 }
 
 #tabs .ui-tabs-nav li a {
-    color: #f3e5f5; /* Text color */
+    color: #f3e5f5;
     font-weight: 600;
     outline: none;
 }
 
 /* The Content Area (Where form and tables live) */
 #tabs .ui-tabs-panel {
-    background: rgba(255, 255, 255, 0.08); /* Glass effect */
+    background: rgba(255, 255, 255, 0.08); 
     border: 1px solid rgba(255, 255, 255, 0.2);
-    border-radius: 0 0 15px 15px; /* Round bottom corners only */
+    border-radius: 0 0 15px 15px; 
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     padding: 25px;
     backdrop-filter: blur(8px);
@@ -232,7 +230,6 @@ label.error {
 }
 
 /* Table Styles (Updated ID to Class) */
-/* Changed #tableWrapper to .table-scroll-area */
 .table-scroll-area {
     overflow: auto;
     max-height: 450px;
@@ -305,6 +302,6 @@ td:hover {
     .generate-btn, .delete-btn {
         font-size: 14px;
         padding: 8px;
-        width: 100%; /* Stack buttons on mobile */
+        width: 100%; 
     }
 }
