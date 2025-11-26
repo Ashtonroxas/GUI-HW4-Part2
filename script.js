@@ -3,11 +3,9 @@
  * Date: 11/26/2025
  * File: script.js
  * GUI Assignment HW4 Part 2:
- * 
- * - Implements Validation Plugin.
+ * * - Implements Validation Plugin.
  * - Implements jQuery UI Sliders (Two-way binding).
  * - Implements jQuery UI Tabs (Dynamic creation and deletion).
-
  */
 
 const MIN_ALLOWED_VAL = -50;
@@ -15,10 +13,10 @@ const MAX_ALLOWED_VAL = 50;
 
 $(document).ready(function() {
     
-    // 1. Initialize Tabs [cite: 57]
+    // 1. Initialize Tabs
     var tabs = $("#tabs").tabs();
 
-    // 2. Initialize Sliders with Two-Way Binding [cite: 74, 78]
+    // 2. Initialize Sliders with Two-Way Binding
     function makeSlider(sliderId, inputId) {
         $(sliderId).slider({
             min: MIN_ALLOWED_VAL,
@@ -48,14 +46,25 @@ $(document).ready(function() {
     makeSlider("#slider-rowStart", "#rowStart");
     makeSlider("#slider-rowEnd", "#rowEnd");
 
-    // 3. Validation Logic (Preserved from Part 1) [cite: 18]
+    // 3. Validation Logic
     $.validator.addMethod("greaterThanEqual", function(value, element, params) {
         const minElementValue = $(params).val();
+
+        // --- FIX START ---
+        // If the comparison field (Start) is empty, do not enforce the rule yet.
+        // This prevents the error from showing up when the user first touches the End slider.
+        if (minElementValue === "") {
+            return true;
+        }
+        // --- FIX END ---
+
         if (isNaN(value) || isNaN(minElementValue)) return true; 
         return Number(value) >= Number(minElementValue);
     }, function(params, element) {
         const label = $(element).closest('.input-row').find('label').text();
-        const partnerLabel = $(params).closest('.input-row').find('label').text();
+        // Safely get the partner label name
+        const $target = $(params);
+        const partnerLabel = $target.length ? $target.closest('.input-row').find('label').text() : "Start Value";
         return ` ${label} must be >= ${partnerLabel}.`;
     });
 
